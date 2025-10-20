@@ -1,0 +1,125 @@
+---
+import { Image } from 'astro:assets';
+
+export interface Props {
+	image: string;
+	title: string;
+	description: string;
+	tag: string[];
+	codeHref?: string;
+	liveHref?: string;
+}
+
+const { image, title, description, tag, codeHref, liveHref } = Astro.props;
+---
+
+<div class="flex flex-col rounded-2xl bg-[#1E2A47]/85 shadow-lg overflow-hidden border border-[#56d2c6]/30 max-w-md w-full">
+	<div class="px-6 pt-6">
+		<div class="relative rounded-2xl overflow-hidden shadow-[0_12px_30px_rgba(0,0,0,0.35)]">
+			<Image
+				src={image}
+				alt={title}
+				width={320}
+				height={176}
+				class="w-full h-44 object-cover"
+			/>
+		</div>
+	</div>
+
+	<div class="flex flex-col flex-grow p-6">
+		<div class="flex flex-wrap gap-2 mb-3">
+			{tag.map((t) => (
+				<span class="px-2 py-1 text-xs font-medium bg-[#56d2c6]/20 text-[#56d2c6] rounded-lg">
+					{t}
+				</span>
+			))}
+		</div>
+
+		<h2 class="text-xl font-semibold text-[#56d2c6] mb-3">
+			{title}
+		</h2>
+
+		<div class="flex flex-col flex-grow gap-2">
+			<p class="text-sm text-neutral-300 leading-relaxed line-clamp-4">
+				{description}
+			</p>
+			<button 
+				class="mt-auto self-start text-[#56d2c6] text-xs font-semibold uppercase tracking-wide transition-colors duration-300 hover:text-[#48b9ae] hover:underline project-read-more"
+				data-title={title}
+				data-description={description}
+				aria-label={`Read more about ${title} project`}
+			>
+				Read more
+			</button>
+		</div>
+
+		<div class="mt-auto flex w-full items-center justify-between gap-4 pt-6">
+			{codeHref && (
+				<a
+					href={codeHref}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-center justify-center gap-2 px-4 py-2 text-[#56d2c6] font-semibold rounded-full shadow-lg hover:shadow-[0_0_16px_rgba(86,210,198,0.75)] transition-all duration-300 border-2 border-[#56d2c6] bg-transparent text-sm uppercase tracking-wide"
+					aria-label={`Pogledaj kod projekta ${title}`}
+				>
+					<span aria-hidden="true" class="text-base font-semibold">
+						{"</>"}
+					</span>
+					Code
+				</a>
+			)}
+			{liveHref && (
+				<a
+					href={liveHref}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-center justify-center gap-2 px-4 py-2 text-[#56d2c6] font-semibold rounded-full shadow-lg hover:shadow-[0_0_16px_rgba(86,210,198,0.75)] transition-all duration-300 border-2 border-[#56d2c6] bg-transparent text-sm uppercase tracking-wide"
+					aria-label={`Otvori live verziju projekta ${title}`}
+				>
+					<span aria-hidden="true" class="text-base font-semibold">
+						{"↗"}
+					</span>
+					Live
+				</a>
+			)}
+		</div>
+	</div>
+</div>
+
+<!-- Modal Script -->
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const readMoreButtons = document.querySelectorAll('.project-read-more');
+		
+		readMoreButtons.forEach((button) => {
+			button.addEventListener('click', function(this: HTMLButtonElement) {
+				const title = this.dataset.title;
+				const description = this.dataset.description;
+				
+				// Create modal
+				const modal = document.createElement('div');
+				modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-6';
+				modal.innerHTML = `
+					<div class="max-w-2xl rounded-2xl bg-[#1E2A47] p-6 shadow-xl">
+						<h2 class="text-2xl font-semibold text-[#56d2c6] mb-4">${title}</h2>
+						<p class="text-base text-neutral-200 leading-relaxed">${description}</p>
+						<button class="close-modal mt-6 flex items-center justify-center gap-2 px-4 py-2 text-[#56d2c6] font-semibold rounded-full border-2 border-[#56d2c6]">
+							Close
+						</button>
+					</div>
+				`;
+				
+				document.body.appendChild(modal);
+				
+				// Close modal handlers
+				const closeButton = modal.querySelector('.close-modal') as HTMLButtonElement;
+				if (closeButton) {
+					closeButton.addEventListener('click', () => modal.remove());
+				}
+				modal.addEventListener('click', (e) => {
+					if (e.target === modal) modal.remove();
+				});
+			});
+		});
+	});
+</script>
