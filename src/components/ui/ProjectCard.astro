@@ -98,14 +98,20 @@ const { image, title, description, tag, codeHref, liveHref } = Astro.props;
 				
 				// Create modal
 				const modal = document.createElement('div');
-				modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-6';
+				modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-6 py-6';
 				modal.innerHTML = `
-					<div class="max-w-2xl rounded-2xl bg-[#1E2A47] p-6 shadow-xl">
-						<h2 class="text-2xl font-semibold text-[#56d2c6] mb-4">${title}</h2>
-						<p class="text-base text-neutral-200 leading-relaxed">${description}</p>
-						<button class="close-modal mt-6 flex items-center justify-center gap-2 px-4 py-2 text-[#56d2c6] font-semibold rounded-full border-2 border-[#56d2c6]">
-							Close
-						</button>
+					<div class="max-w-2xl w-full max-h-[70dvh] rounded-2xl bg-[#1E2A47] shadow-xl flex flex-col">
+						<div class="p-6 pb-4 flex-shrink-0">
+							<h2 class="text-2xl font-semibold text-[#56d2c6]">${title}</h2>
+						</div>
+						<div class="px-6 flex-1 overflow-y-auto">
+							<p class="text-base text-neutral-200 leading-relaxed">${description}</p>
+						</div>
+						<div class="p-6 pt-4 flex-shrink-0">
+							<button class="close-modal flex items-center justify-center gap-2 px-4 py-2 text-[#56d2c6] font-semibold rounded-full border-2 border-[#56d2c6]">
+								Close
+							</button>
+						</div>
 					</div>
 				`;
 				
