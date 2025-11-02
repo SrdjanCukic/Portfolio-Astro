@@ -8,7 +8,7 @@ export interface Props {
 
 const { 
 	title, 
-	description = "Srđan Cukić - Full Stack Developer from Serbia. React, TypeScript, Node.js, JavaScript developer. Portfolio with projects. Freelance web developer. Frontend and backend development.",
+	description = "Srđan Cukić - Frontend Developer from Serbia. React, TypeScript, Node.js, JavaScript developer. Portfolio with projects. Freelance web developer. Frontend development.",
 	image = "/images/portfolio-preview.jpg",
 	canonical = "https://www.srdjancukic.com"
 } = Astro.props;
@@ -27,7 +27,7 @@ const fullImageUrl = new URL(image, siteUrl).toString();
 		<title>{title}</title>
 		<meta name="title" content={title} />
 		<meta name="description" content={description} />
-		<meta name="keywords" content="Srđan Cukić, Full Stack Developer, React, TypeScript, Node.js, JavaScript, Portfolio, Web Development, Frontend, Backend, programmer, developer, Serbia" />
+		<meta name="keywords" content="Srđan Cukić, Frontend Developer, React, TypeScript, Node.js, JavaScript, Portfolio, Web Development, Frontend, Backend, programmer, developer, Serbia" />
 		<meta name="author" content="Srđan Cukić" />
 		<meta name="robots" content="index, follow" />
 		<link rel="canonical" href={canonical} />
@@ -40,11 +40,14 @@ const fullImageUrl = new URL(image, siteUrl).toString();
 		<meta property="og:image" content={fullImageUrl} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
-		<meta property="og:image:alt" content="Srđan Cukić Portfolio - Full Stack Developer" />
+		<meta property="og:image:alt" content="Srđan Cukić Portfolio - Frontend Developer" />
 		<meta property="og:site_name" content="Srđan Cukić Portfolio" />
 		
 		<!-- Icons -->
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
 		
 		<!-- Generator -->
 		<meta name="generator" content={Astro.generator} />
