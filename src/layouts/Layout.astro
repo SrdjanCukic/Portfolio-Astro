@@ -23,7 +23,7 @@ const fullImageUrl = new URL(image, siteUrl).toString();
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		
-		<!-- Primary Meta Tags for Google -->
+		<!-- Primary Meta Tags -->
 		<title>{title}</title>
 		<meta name="title" content={title} />
 		<meta name="description" content={description} />
@@ -32,7 +32,7 @@ const fullImageUrl = new URL(image, siteUrl).toString();
 		<meta name="robots" content="index, follow" />
 		<link rel="canonical" href={canonical} />
 		
-		<!-- Open Graph for Google rich snippets -->
+		<!-- Open Graph / Facebook -->
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={canonical} />
 		<meta property="og:title" content={title} />
@@ -43,30 +43,32 @@ const fullImageUrl = new URL(image, siteUrl).toString();
 		<meta property="og:image:alt" content="Srđan Cukić Portfolio - Frontend Developer" />
 		<meta property="og:site_name" content="Srđan Cukić Portfolio" />
 		
-		<!-- Icons -->
+		<!-- Favicon / Icons -->
+		<link rel="icon" href="/favicon.ico" sizes="any" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="manifest" href="/site.webmanifest" />
+		<!-- Theme color for supported browsers / UI (matches manifest) -->
+		<meta name="theme-color" content="#56d2c6" />
 		
 		<!-- Generator -->
 		<meta name="generator" content={Astro.generator} />
 		
-		<!-- Google Structured Data (JSON-LD) -->
+		<!-- JSON-LD Structured Data -->
 		<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
 			"@type": "Person",
 			"name": "Srđan Cukić",
-			"jobTitle": "Full Stack Developer",
+			"jobTitle": "Frontend Developer",
 			"url": "https://www.srdjancukic.com",
 			"description": "{description}",
-			"knowsAbout": ["JavaScript", "TypeScript", "React", "Node.js", "Full Stack Development", "Web Development", "Frontend Development", "Backend Development"],
+			"knowsAbout": ["JavaScript", "TypeScript", "React", "Node.js", "Frontend Development", "Web Development", "UI/UX Development"],
 			"worksFor": {
 				"@type": "Organization",
 				"name": "Freelance"
 			},
-			"nationality": "Serbian",
 			"sameAs": [
 				"https://github.com/SrdjanCukic"
 			]
@@ -82,11 +84,9 @@ const fullImageUrl = new URL(image, siteUrl).toString();
 	html {
 		font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 	}
-	
 	* {
 		box-sizing: border-box;
 	}
-	
 	body {
 		margin: 0;
 		padding: 0;
